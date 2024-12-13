@@ -33,8 +33,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
     Route::resource('admin/products', Product::class)->except(['create', 'edit']);
-    Route::get('/admin/products', [Product::class, 'index'])->name('admin.products');
-});
+    Route::get('dashboard/form/index', [Product::class, 'index'])->name('admin.products');
+}); 
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'verified']], function () {
     Route::resource('form', FormController::class);
